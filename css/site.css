@@ -1686,24 +1686,25 @@ code {
   grid-template-columns: 1fr 1fr;
   column-gap: clamp(2.5rem, 6vw, 5rem);
   align-items: baseline;
-  padding-block: clamp(0.7rem, 1.8vh, 1.1rem);
+  padding-block: clamp(1.1rem, 3vh, 1.8rem);
 }
 .rolo__linha dt {
   text-align: right;
-  font-stretch: 64%;
-  font-weight: 800;
-  font-size: clamp(1.9rem, 1.2rem + 1.8vw, 2.9rem);
-  line-height: 1;
-  color: var(--claro);
+  font-size: 0.875rem;
+  font-weight: 650;
+  font-stretch: 90%;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--avanco-tinta);
 }
-.rolo__linha dd {
-  margin: 0;
-  max-width: 24em;
-  font-family: "Newsreader", Georgia, serif;
-  font-style: italic;
-  font-size: clamp(1.05rem, 0.98rem + 0.3vw, 1.25rem);
-  line-height: 1.35;
-  color: var(--claro-2);
+.rolo__linha dd { margin: 0; }
+.rolo__linha ul { margin: 0; padding: 0; list-style: none; }
+.rolo__linha li {
+  font-stretch: 66%;
+  font-weight: 750;
+  font-size: clamp(1.55rem, 1.1rem + 1.1vw, 2.2rem);
+  line-height: 1.12;
+  color: var(--claro);
 }
 
 .rolo__autor {
@@ -1782,8 +1783,8 @@ code {
     margin-bottom: 1.1rem;
     background: var(--linha-tinta);
   }
-  .rolo__linha dt { text-align: center; font-size: 2.1rem; }
-  .rolo__linha dd { margin-inline: auto; max-width: 22em; font-size: 1.08rem; }
+  .rolo__linha dt { text-align: center; }
+  .rolo__linha li { font-size: 1.7rem; }
   .rolo__autor { padding-inline: 0; }
   .rolo__autor-nome { font-size: clamp(2.9rem, 1.2rem + 9vw, 4.2rem); }
 }
