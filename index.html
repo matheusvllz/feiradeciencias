@@ -46,6 +46,7 @@
     <li><a href="#cap-10"><span>10</span>Tecnologia</a></li>
     <li><a href="#documentario"><span></span>O documentário</a></li>
     <li><a href="#fontes"><span></span>Fontes</a></li>
+    <li><a href="#creditos"><span></span>Créditos</a></li>
   </ol>
 </nav>
 
@@ -545,25 +546,27 @@
 <!-- ================= DOCUMENTÁRIO ================= -->
 <section class="cena cena--tinta cena--filme" id="documentario" data-mat="tinta" aria-labelledby="tf">
   <h2 class="titulo" id="tf" data-titulo>O documentário</h2>
-  <p class="voz voz--lede" data-voz>O cenário da pobreza e da fome no Brasil</p>
+  <p class="voz voz--lede" data-voz>O filme que este dossiê acompanha, com as vozes da turma.</p>
 
   <div class="filme">
-    <video class="filme__video" controls preload="none" playsinline poster="media/poster-documentario.jpg" width="1280" height="720">
-      <source src="media/documentario-720p.mp4" type="video/mp4">
-      <p>Seu navegador não reproduz este vídeo. <a href="media/documentario-720p.mp4">Baixe o documentário (MP4, 60&nbsp;MB)</a>.</p>
-    </video>
+    <div class="filme__tela" data-filme>
+      <a class="filme__capa" href="https://www.youtube.com/watch?v=ShKWCZrebrY" data-filme-play data-yt="ShKWCZrebrY" rel="noreferrer noopener">
+        <span class="filme__turma">Mostra científica · Turma 231</span>
+        <span class="filme__nome">O cenário da pobreza e da fome no Brasil</span>
+        <span class="filme__play"><i aria-hidden="true"></i>Assistir <span class="filme__dur">10 min 55 s</span></span>
+      </a>
+    </div>
     <dl class="filme__ficha">
-      <div><dt>Duração</dt><dd>9 min 59 s</dd></div>
-      <div><dt>Resolução</dt><dd>1280 × 720</dd></div>
-      <div><dt>Legendas</dt><dd>embutidas na imagem</dd></div>
+      <div><dt>Duração</dt><dd>10 min 55 s</dd></div>
+      <div><dt>Onde</dt><dd>YouTube, até 4K</dd></div>
+      <div><dt>Conexão</dt><dd>precisa de internet</dd></div>
       <div><dt>Som</dt><dd>só começa quando você der play</dd></div>
     </dl>
   </div>
 
   <div class="leitura">
-    <p>Feito pela turma para a feira de ciências, o filme reúne as falas dos sete apresentadores, os dados de cada capítulo deste dossiê e as animações de mapa e gráfico produzidas para o projeto.</p>
-    <p class="filme__equipe"><b>Apresentam:</b> Ágatha, Ana Clara, Ana Júlia, João Pedro, Júlia Arruda, Sarah e Suri.</p>
-    <p class="fonte">As legendas também estão disponíveis em arquivo separado: <a href="media/documentario.srt" download>documentario.srt</a>.</p>
+    <p>Feito pela Turma 231 para a mostra científica <i>Tecnologia a serviço da humanidade</i>, o filme reúne as falas dos sete apresentadores sobre os temas deste dossiê: pobreza, pobreza multidimensional, inflação dos alimentos e fome.</p>
+    <p class="fonte">O player só é carregado quando você clica em assistir. Também dá para abrir o filme <a href="https://www.youtube.com/watch?v=ShKWCZrebrY" rel="noreferrer noopener">direto no YouTube</a>. Quem apresentou cada parte está nos <a href="#creditos">créditos</a>.</p>
   </div>
 </section>
 
@@ -644,11 +647,47 @@
       <li>O roteiro do documentário citava 733 milhões de pessoas com fome e 2,33 bilhões em insegurança alimentar. Esses números são do SOFI 2024 e se referem a 2023; aqui foram trocados pelos de 2025.</li>
       <li>A frase de que a agricultura familiar produziria 70% dos alimentos do país costuma ser atribuída ao Censo Agropecuário, mas não é o que ele mede. O <a href="#cap-8">capítulo 8</a> traz os números como aparecem na publicação.</li>
     </ul>
-
-    <h3 class="subtitulo subtitulo--esq">Créditos</h3>
-    <p class="creditos">Documentário e pesquisa: Ágatha, Ana Clara, Ana Júlia, João Pedro, Júlia Arruda, Sarah e Suri. Mapa das regiões feito a partir das malhas territoriais do IBGE. Tipografia Archivo e Newsreader, ambas sob licença SIL Open Font. Animações com GSAP.</p>
-    <p class="volta"><a href="#topo">Voltar ao início</a></p>
   </div>
+</section>
+
+<div class="corte corte--escurece" aria-hidden="true"><i data-fio></i></div>
+
+<!-- ================= CRÉDITOS ================= -->
+<section class="cena cena--tinta creditos" id="creditos" data-mat="tinta" aria-labelledby="tcred" data-creditos>
+  <h2 class="titulo" id="tcred" data-titulo>Créditos</h2>
+  <p class="voz voz--lede" data-voz>Mostra científica da Turma 231, <span class="creditos__mostra">Tecnologia a serviço da humanidade</span></p>
+
+  <div class="rolo" data-rolo>
+    <span class="rolo__fio" aria-hidden="true" data-rolo-fio></span>
+
+    <h3 class="rolo__grupo" data-rolo-item>Documentário, apresentação e pesquisa</h3>
+    <dl class="rolo__lista">
+      <div class="rolo__linha" data-rolo-item><dt>Ágatha</dt><dd>a introdução, os avanços recentes, o ODS 2 e por que existe fome</dd></div>
+      <div class="rolo__linha" data-rolo-item><dt>Ana Clara</dt><dd>os indicadores do Rede+, o Mapa da Fome e a diferença entre cidade e campo</dd></div>
+      <div class="rolo__linha" data-rolo-item><dt>Ana Júlia</dt><dd>Brasil e sustentabilidade, a fome no mundo e por que a comida fica cara</dd></div>
+      <div class="rolo__linha" data-rolo-item><dt>João Pedro</dt><dd>educação e oportunidades, o IPM e a fome na África</dd></div>
+      <div class="rolo__linha" data-rolo-item><dt>Júlia Arruda</dt><dd>desigualdade social, como funciona o IPM e o preço de uma dieta saudável</dd></div>
+      <div class="rolo__linha" data-rolo-item><dt>Sarah</dt><dd>desafios para o futuro, o que é pobreza multidimensional, fome e insegurança alimentar</dd></div>
+      <div class="rolo__linha" data-rolo-item><dt>Suri</dt><dd>Amazônia e Marajó, o preço no supermercado e a insegurança alimentar no Brasil</dd></div>
+    </dl>
+
+    <h3 class="rolo__grupo" data-rolo-item>Site</h3>
+    <div class="rolo__autor">
+      <p class="rolo__autor-nome" data-rolo-nome>Matheus Vellozo</p>
+      <span class="rolo__medida" aria-hidden="true" data-rolo-medida><i></i></span>
+      <p class="rolo__autor-papel">fez o site completo: concepção, direção de arte, design, código, animações e verificação dos dados</p>
+    </div>
+
+    <h3 class="rolo__grupo" data-rolo-item>Materiais</h3>
+    <ul class="rolo__miudo" data-rolo-item>
+      <li>Mapa das regiões feito a partir das malhas territoriais do IBGE</li>
+      <li>Tipografia Archivo e Newsreader, sob licença SIL Open Font</li>
+      <li>Animações com GSAP</li>
+      <li>Filme hospedado no YouTube</li>
+    </ul>
+  </div>
+
+  <p class="volta" data-rolo-item><a href="#topo">Voltar ao início</a></p>
 </section>
 
 </main>

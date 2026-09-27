@@ -7,7 +7,8 @@
    - pilha: as privações se acumulam na mesma família (CSS sticky);
    - rota: a linha desce da lavoura ao mercado e o preço vai se formando;
    - grade: 28 quadrados viram 24 entre 2023 e 2024;
-   - fecho: a pergunta do começo é riscada e completada.
+   - fecho: a pergunta do começo é riscada e completada;
+   - créditos: o fio desce pelo rolo e a medida da abertura volta sob o nome.
    Texto corrido nunca anima. Sem GSAP ou com movimento reduzido, tudo fica
    no estado final. */
 (function () {
@@ -488,6 +489,43 @@
       .to({}, { duration: 0.45 });
   }
 
+  /* créditos: o fio acompanha a rolagem; nomes entram um a um */
+  function creditos(desk) {
+    const c = $("[data-creditos]");
+    if (!c) return;
+    const fio = $("[data-rolo-fio]", c);
+    if (desk && fio) {
+      gsap.fromTo(
+        fio,
+        { scaleY: 0 },
+        { scaleY: 1, ease: "none", scrollTrigger: { trigger: $("[data-rolo]", c), start: "top 75%", end: "bottom 75%", scrub: true } }
+      );
+    }
+    $$("[data-rolo-item]", c).forEach((el) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 22,
+        duration: 1,
+        scrollTrigger: { trigger: el, start: "top 90%", once: true }
+      });
+    });
+
+    const nome = $("[data-rolo-nome]", c);
+    const medida = $("[data-rolo-medida]", c);
+    const tl = gsap.timeline({ scrollTrigger: { trigger: nome, start: "top 82%", once: true } });
+    if (temSplit) {
+      const partes = SplitText.create(nome, { type: "lines", mask: "lines", linesClass: "lin" });
+      tl.from(partes.lines, { yPercent: 106, duration: 1.1, stagger: 0.08 });
+    } else {
+      tl.from(nome, { opacity: 0, y: 24, duration: 1 });
+    }
+    tl.from(medida, { scaleX: 0, duration: 1.1, ease: "power3.inOut" }, "-=0.6").from(
+      $("i", medida),
+      { scaleX: 0, duration: 0.9, ease: "power3.inOut" },
+      "<0.15"
+    );
+  }
+
   /* ------------------------------------------------------------------ */
 
   barra();
@@ -521,6 +559,7 @@
       parcelas();
       raio();
       fecho(desk);
+      creditos(desk);
 
       if (ScrollTrigger.sort) ScrollTrigger.sort();
       return () => limpezas.forEach((fn) => fn && fn());

@@ -75,3 +75,27 @@
   }
   atualizar();
 })();
+
+/* O filme (seção do documentário). A capa é um link para o YouTube; com JS,
+   o clique troca a capa pelo player sem cookies, já tocando, porque foi a
+   pessoa quem pediu. Nada do YouTube carrega antes disso. */
+(function () {
+  "use strict";
+
+  var link = document.querySelector("[data-filme-play]");
+  if (!link) return;
+
+  link.addEventListener("click", function (e) {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+    e.preventDefault();
+    var tela = link.parentNode;
+    var player = document.createElement("iframe");
+    player.src = "https://www.youtube-nocookie.com/embed/" + link.getAttribute("data-yt") + "?autoplay=1&rel=0&playsinline=1";
+    player.title = "Documentário O cenário da pobreza e da fome no Brasil, no YouTube";
+    player.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture";
+    player.allowFullscreen = true;
+    player.referrerPolicy = "strict-origin-when-cross-origin";
+    tela.replaceChild(player, link);
+    player.focus();
+  });
+})();

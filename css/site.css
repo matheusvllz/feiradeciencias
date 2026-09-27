@@ -1438,12 +1438,84 @@ code {
    ========================================================================= */
 
 .filme { margin-inline: auto; max-width: 66rem; }
-.filme__video {
-  width: 100%;
-  height: auto;
+/* A capa é do próprio site: o player do YouTube só entra no clique, para
+   não carregar terceiros nem som sem pedido. Sem JS, é um link para o vídeo. */
+.filme__tela {
+  position: relative;
   aspect-ratio: 16 / 9;
-  background: #000;
+  background: var(--tinta-alto);
+  outline: 1px solid var(--linha-tinta);
 }
+.filme__tela iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.filme__capa {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.9rem, 2.4vw, 1.6rem);
+  padding: 1.25rem;
+  text-align: center;
+  color: var(--claro);
+  text-decoration: none;
+}
+.filme__turma {
+  font-size: clamp(0.72rem, 0.66rem + 0.3vw, 0.875rem);
+  font-weight: 650;
+  font-stretch: 90%;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--avanco-tinta);
+}
+.filme__nome {
+  max-width: 13em;
+  font-stretch: 64%;
+  font-weight: 800;
+  font-size: clamp(1.9rem, 0.9rem + 4.2vw, 4.4rem);
+  line-height: 0.95;
+  text-wrap: balance;
+}
+.filme__play {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-height: 2.75rem;
+  font-weight: 650;
+  font-size: clamp(0.95rem, 0.9rem + 0.3vw, 1.1rem);
+}
+.filme__play i {
+  position: relative;
+  display: block;
+  width: clamp(2.75rem, 2.2rem + 2vw, 3.6rem);
+  aspect-ratio: 1;
+  border: 1.5px solid var(--avanco-tinta);
+  border-radius: 50%;
+  transition: background-color 0.35s var(--ease);
+}
+.filme__play i::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-style: solid;
+  border-width: 0.45em 0 0.45em 0.75em;
+  border-color: transparent transparent transparent var(--avanco-tinta);
+  transform: translate(-35%, -50%);
+  transition: border-color 0.35s var(--ease);
+}
+.filme__dur { font-weight: 400; color: var(--claro-2); }
+.filme__capa:hover .filme__play i,
+.filme__capa:focus-visible .filme__play i { background: var(--avanco-tinta); }
+.filme__capa:hover .filme__play i::after,
+.filme__capa:focus-visible .filme__play i::after { border-left-color: var(--tinta); }
+.filme__capa:focus-visible { outline: 2px solid var(--avanco-tinta); outline-offset: 4px; }
 .filme__ficha {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1458,8 +1530,8 @@ code {
 }
 .filme__ficha dt { font-size: 0.8125rem; font-weight: 650; color: var(--claro-2); }
 .filme__ficha dd { margin: 0.15rem 0 0; }
-.filme__equipe b { color: var(--claro); }
-.cena--filme code { background: rgba(255, 255, 255, 0.1); }
+.cena--filme .fonte { color: var(--claro-2); }
+.cena--filme .fonte a { color: var(--claro); }
 
 /* =========================================================================
    FECHAMENTO
@@ -1562,12 +1634,158 @@ code {
 }
 .metodo { margin: 0; padding-left: 1.1rem; }
 .metodo li { margin-bottom: 0.8rem; font-size: 0.97rem; }
-.creditos { font-size: 0.97rem; color: var(--grafite-2); }
+.volta { text-align: center; }
 .volta a {
   display: inline-flex;
   align-items: center;
   min-height: 2.75rem;
   font-weight: 650;
+}
+
+/* =========================================================================
+   CRÉDITOS
+   Fim de filme. No desktop, o fio dos cortes desce pelo meio do rolo:
+   nome de um lado, o que a pessoa apresentou do outro. No celular, tudo
+   empilhado e centrado, com um trecho de fio entre as pessoas.
+   ========================================================================= */
+
+.creditos__mostra { font-style: normal; font-family: "Archivo", sans-serif; font-stretch: 80%; font-weight: 600; }
+.rolo {
+  position: relative;
+  max-width: 64rem;
+  margin-inline: auto;
+  padding-block: 1rem;
+}
+.rolo__fio {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--avanco-tinta), var(--linha-tinta) 30%, var(--linha-tinta) 70%, var(--avanco-tinta));
+  transform-origin: 50% 0;
+}
+.rolo__grupo {
+  position: relative;
+  width: fit-content;
+  margin: clamp(3.5rem, 9vh, 6rem) auto clamp(1.6rem, 4vh, 2.4rem);
+  padding: 0.5rem 1rem;
+  background: var(--tinta);
+  font-size: 0.8125rem;
+  font-weight: 650;
+  font-stretch: 90%;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--avanco-tinta);
+}
+.rolo__grupo:first-of-type { margin-top: 0; }
+.rolo__lista { margin: 0; }
+.rolo__linha {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: baseline;
+  padding-block: clamp(0.7rem, 1.8vh, 1.1rem);
+}
+.rolo__linha dt {
+  text-align: right;
+  font-stretch: 64%;
+  font-weight: 800;
+  font-size: clamp(1.9rem, 1.2rem + 1.8vw, 2.9rem);
+  line-height: 1;
+  color: var(--claro);
+}
+.rolo__linha dd {
+  margin: 0;
+  max-width: 24em;
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.05rem, 0.98rem + 0.3vw, 1.25rem);
+  line-height: 1.35;
+  color: var(--claro-2);
+}
+
+.rolo__autor {
+  position: relative;
+  margin-inline: auto;
+  padding: 1.2rem 1rem 1.4rem;
+  max-width: 44rem;
+  background: var(--tinta);
+  text-align: center;
+}
+.rolo__autor-nome {
+  margin: 0;
+  font-stretch: 62%;
+  font-weight: 800;
+  font-size: var(--t-titulo);
+  line-height: 0.92;
+  color: var(--claro);
+}
+.rolo__medida {
+  display: block;
+  width: min(100%, 30rem);
+  height: 1.1rem;
+  margin: 1.1rem auto 1rem;
+  position: relative;
+  border-inline: 1.5px solid var(--avanco-tinta);
+}
+.rolo__medida i {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1.5px;
+  background: var(--avanco-tinta);
+}
+.rolo__autor-papel {
+  margin: 0 auto;
+  max-width: 26em;
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-size: var(--t-lede);
+  line-height: 1.32;
+  text-wrap: balance;
+  color: #d7d9dd;
+}
+
+.rolo__miudo {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0.6rem 1.2rem;
+  list-style: none;
+  background: var(--tinta);
+  text-align: center;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--claro-2);
+}
+.rolo__miudo li + li { margin-top: 0.35rem; }
+.creditos .volta { margin-top: clamp(3.5rem, 9vh, 6rem); }
+.creditos .volta a { color: var(--avanco-tinta); }
+
+@media (max-width: 47.99rem) {
+  .rolo__fio { display: none; }
+  .rolo__grupo { margin-top: 3.2rem; }
+  .rolo__linha {
+    grid-template-columns: 1fr;
+    row-gap: 0.4rem;
+    padding-block: 1.3rem;
+    text-align: center;
+  }
+  .rolo__linha + .rolo__linha::before {
+    content: "";
+    justify-self: center;
+    width: 1px;
+    height: 1.6rem;
+    margin-bottom: 1.1rem;
+    background: var(--linha-tinta);
+  }
+  .rolo__linha dt { text-align: center; font-size: 2.1rem; }
+  .rolo__linha dd { margin-inline: auto; max-width: 22em; font-size: 1.08rem; }
+  .rolo__autor { padding-inline: 0; }
+  .rolo__autor-nome { font-size: clamp(2.9rem, 1.2rem + 9vw, 4.2rem); }
 }
 
 /* =========================================================================
@@ -1664,7 +1882,7 @@ code {
 }
 
 @media print {
-  .barra, .indice, .filme__video, .corte { display: none; }
+  .barra, .indice, .filme__tela, .corte, .rolo__fio { display: none; }
   body::before { display: none; }
   .cena, .abre { background: #fff !important; color: #000 !important; }
   .folha { position: static; }
